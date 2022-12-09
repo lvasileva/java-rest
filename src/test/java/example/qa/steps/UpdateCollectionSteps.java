@@ -18,7 +18,7 @@ public class UpdateCollectionSteps extends BaseCollection {
     }
 
     @And("user's collection with name {string} is exist")
-    public void userSCollectionWithNameIsExist(String collectionName) {
+    public void userSCollectionWithNameIsExist(String collectionName) throws Exception {
         if (!isUserCollectionExistByName(InitializerSteps.username, collectionName)) {
             createCollectionWithName(collectionName);
         }
@@ -26,7 +26,7 @@ public class UpdateCollectionSteps extends BaseCollection {
     }
 
     @When("user updates the collection name to {string}")
-    public void userUpdatesTheCollectionNameTo(String collectionName) {
+    public void userUpdatesTheCollectionNameTo(String collectionName) throws Exception {
         Collection collection = (Collection) scenarioContext.getContext(Context.COLLECTION);
         scenarioContext.setContext(Context.COLLECTION_NAME, collectionName);
         scenarioContext.setContext(Context.COLLECTION, updateCollectionNameById(collection.getId(), collectionName));

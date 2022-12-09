@@ -14,11 +14,13 @@ public class AfterHooks extends BaseCollection {
     }
 
     @After("@collections")
-    public void deleteCollection() {
-        Collection collection = (Collection) scenarioContext.getContext(Context.COLLECTION);
+    public void deleteCollection() throws Exception {
+        if (scenarioContext.getContext(Context.COLLECTION) != null) {
+            Collection collection = (Collection) scenarioContext.getContext(Context.COLLECTION);
 
-        if (isUserCollectionExistByName(InitializerSteps.username, collection.getTitle())) {
-            deleteCollectionById(collection.getId());
+            if (isUserCollectionExistByName(InitializerSteps.username, collection.getTitle())) {
+                deleteCollectionById(collection.getId());
+            }
         }
     }
 }

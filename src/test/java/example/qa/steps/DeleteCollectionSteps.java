@@ -19,13 +19,13 @@ public class DeleteCollectionSteps extends BaseCollection {
     }
 
     @When("user deletes the collection")
-    public void userDeletesTheCollection() {
+    public void userDeletesTheCollection() throws Exception {
         Collection collection = (Collection) scenarioContext.getContext(Context.COLLECTION);
         deleteCollectionById(collection.getId());
     }
 
     @Then("the collection is deleted")
-    public void theCollectionIsDeleted() {
+    public void theCollectionIsDeleted() throws Exception {
         Collection collection = (Collection) scenarioContext.getContext(Context.COLLECTION);
         List<Collection> collectionList = getAllUserCollections(InitializerSteps.username);
         assertThat(collectionList).as("User's " + InitializerSteps.username + " collection list contains the collection " + collection.getTitle()).doesNotContain(collection);

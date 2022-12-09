@@ -20,12 +20,12 @@ public class CreateCollectionSteps extends BaseCollection {
     }
 
     @When("user creates new collection")
-    public void userCreatesNewCollection() {
+    public void userCreatesNewCollection() throws Exception {
         scenarioContext.setContext(Context.COLLECTION, createCollectionWithName("autotest " + ZonedDateTime.now()));
     }
 
     @Then("new user's collection is added")
-    public void newCollectionIsAdded() {
+    public void newCollectionIsAdded() throws Exception {
         List<Collection> list = getAllUserCollections(InitializerSteps.username);
         assertThat(list).as("No expected collection found").contains((Collection) scenarioContext.getContext(Context.COLLECTION));
     }
